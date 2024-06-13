@@ -13,7 +13,7 @@ from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.engine import DefaultTrainer, SimpleTrainer, TrainerBase
 from detectron2.engine.train_loop import AMPTrainer
 from detectron2.utils.events import EventStorage
-from detectron2.evaluation import verify_results, DatasetEvaluators
+from detectron2.evaluation import verify_results, DatasetEvaluators, CityscapeDetectionEvaluator
 # from detectron2.evaluation import COCOEvaluator, verify_results, DatasetEvaluators
 
 from detectron2.data.dataset_mapper import DatasetMapper
@@ -365,6 +365,8 @@ class CATTrainer(DefaultTrainer):
             return PascalVOCDetectionEvaluator(dataset_name)
         elif evaluator_type == "pascal_voc_water":
             return PascalVOCDetectionEvaluator(dataset_name, target_classnames=["bicycle", "bird", "car", "cat", "dog", "person"])
+        elif evaluator_type == "cityscapes_voc":
+            return CityscapeDetectionEvaluator(dataset_name)
         if len(evaluator_list) == 0:
             raise NotImplementedError(
                 "no Evaluator for the dataset {} with the type {}".format(

@@ -120,7 +120,7 @@ class vgg_backbone(Backbone):
 def build_vgg_backbone(cfg, _):
     vgg = vgg_backbone(cfg)
     print('Loading VGG weights')
-    state_dict = torch.load('checkpoints/vgg16_caffe.pth')
+    # state_dict = torch.load('checkpoints/vgg16_caffe.pth')
     if False:
         state_names = [x for x in state_dict.keys()][:26]
         vgg_names = [x for x in vgg.state_dict().keys()]
